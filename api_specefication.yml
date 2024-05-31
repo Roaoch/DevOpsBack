@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  version: 1.0.0
+
+paths:
+  /create:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: d4eic1pf9s1jp0r4rs1s
+        service_account_id: ajej49bir0o8t19q8i1g
+      operationId: devops-create
+  /delet:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: d4et862qeokq06hqnc1r
+        service_account_id: ajej49bir0o8t19q8i1g
+      operationId: devops-delete
+  /get-leads:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: d4e38qjrv3jgpdrap9ko
+        service_account_id: ajej49bir0o8t19q8i1g
+      operationId: 
+  /update-lead:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: d4eonkeu24mvaalopgek
+        service_account_id: ajej49bir0o8t19q8i1g
+      operationId: devops-update-lead
+  /delet-all:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: d4edat69luvachpmjjol
+        service_account_id: ajej49bir0o8t19q8i1g
+      operationId: devops-delete-all
