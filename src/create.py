@@ -1,11 +1,12 @@
 import uuid
+import os
 import json
 import ydb
 import ydb.iam
 
 driver = ydb.Driver(
-  endpoint='grpcs://ydb.serverless.yandexcloud.net:2135',
-  database='/ru-central1/b1gfns2re5nhiv564e87/etnptel3hir13svk41ca',
+  endpoint=os.environ['endpoint'],
+  database=os.environ['database'],
   credentials=ydb.iam.MetadataUrlCredentials(),
 )
 driver.wait(fail_fast=True, timeout=5)
@@ -15,7 +16,7 @@ def get_query(name: str, description: str):
   id = str(uuid.uuid4())
   def execute_query(session):
     return session.transaction().execute(
-      f"INSERT INTO leads (id, description, name, status, is_final) VALUES ('{id}', '{description}', '{name}', 'Новый', FALSE);",
+      f"INSERT INTO `root/leads` (id, description, name, status, is_final) VALUES ('{id}', '{description}', '{name}', 'Новый', FALSE);",
       commit_tx=True,
       settings=ydb.BaseRequestSettings().with_timeout(3).with_operation_timeout(2)
     )
